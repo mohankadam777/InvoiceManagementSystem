@@ -1,0 +1,88 @@
+<div class="dialog-main-div">
+    <nav class="dialog-nav">
+        <h2>{{this.data.action}} Customer</h2>
+        <mat-icon mat-dialog-close mat-icon-button style="height: 1.5rem">close</mat-icon>
+    </nav>
+    <div *ngIf="data.action!='Delete'" class="dialog-body">
+        <form #updateForm="ngForm">
+            <label for="custName">Name </label>
+            <input required [(ngModel)]="this.data.customer.custName" type="text" #custName="ngModel" name="custName" id="custName"><br>
+            <div *ngIf="custName.invalid && custName.touched">Name is a required field</div>
+
+            <label for="email">Email </label>
+            <input required [(ngModel)]="this.data.customer.email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" #email="ngModel" name="email" id="email"><br>
+            <div *ngIf="email.touched">
+                <p *ngIf="email.errors?.['required']">Email is a required field</p>
+                <p *ngIf="email.errors?.['pattern']">This is not a valid Email </p>
+            </div>
+            
+            <label for="contactNumber">Contact Number </label>
+            <input required [(ngModel)]="this.data.customer.contactNumber" type="text" #contactNumber="ngModel" name="contactNumber" id="contactNumber" minlength="10" maxlength="10"><br>
+            <div *ngIf="contactNumber.touched">
+                <p *ngIf="contactNumber.errors?.['required']">Contact number is a required field</p>
+                <p *ngIf="contactNumber.errors?.['minlength'] || contactNumber.errors?.['maxlength']">Contact number should be 10 digit. </p>
+            </div>
+
+            <label for="address">Address </label>
+            <input required  [(ngModel)]="this.data.customer.address" type="text" #address="ngModel" name="address" id="address" minlength="10"><br>
+            <div *ngIf="address.touched">
+                <p *ngIf="address.errors?.['required']">Address is a required field</p>
+                <p *ngIf="address.errors?.['minlength']">Address should be 10 digit. </p>
+            </div>
+        </form>
+        <div class="button-div">
+            <button mat-raised-button [disabled]="updateForm.invalid"
+            (click)="handleSubmit(updateForm.value)">{{this.data.action}}</button>
+            <button mat-dialog-close mat-raised-button>Back</button>
+        </div>
+    </div>
+    <div *ngIf="data.action=='Delete'" class="delete-section">
+        <p>Are you share you want to delete the Customer</p>
+        <button mat-raised-button 
+        (click)="handleSubmit('')">{{this.data.action}}</button>
+        <button mat-dialog-close mat-raised-button>Back</button>
+
+    </div>
+</div>
+<style>
+    .delete-section{
+        padding: 1rem;
+    }
+    .dialog-body,.button-div{
+        padding: 1rem;
+    }
+    input {
+        margin: 1rem;
+        padding: 0.5 rem;
+    }
+
+    .button-div>button {
+        margin: 0 10px;
+    }
+
+    mat-icon {
+        background-color: orange;
+        color: white;
+        margin: 1rem;
+    }
+
+    .dialog-main-div {
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+
+    }
+
+    .dialog-nav>h2 {
+        margin: auto 20px;
+        font-weight:normal;
+    }
+
+    .dialog-nav {
+        color: whitesmoke;
+        display: flex;
+        justify-content: space-between;
+        height: 10%;
+        background-color: orange;
+    }
+</style>

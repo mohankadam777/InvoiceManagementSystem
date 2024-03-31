@@ -1,0 +1,128 @@
+<div class="dialog-main-div">
+    <nav class="dialog-nav">
+        <h2>{{this.data.action}} Invoice</h2>
+        <mat-icon mat-dialog-close mat-icon-button style="height: 1.5rem">close</mat-icon>
+    </nav>
+    <div *ngIf="data.action!='Delete'" class="dialog-body">
+        <form #invoiceForm="ngForm">
+
+           
+            <label for="customerId">Customer Name </label>
+            <select ngModel name="customerId" id="customerId">
+                <option *ngFor="let cust of customerList" [value]="cust.customerId">{{cust.custName}}</option><br>
+            </select>
+
+            <div class = "product-details">
+                <div class="product-detail">
+                    <label for="name">Name </label>
+                    <input ngModel  type="text" #name="ngModel" name="name" id="name"><br>
+                </div>  
+                <div class="product-detail">
+                    <label for="price">Price </label>
+                    <input ngModel  type="number" #price="ngModel" name="price" id="price"><br>
+                </div> 
+                <div class="product-detail">
+                    <label for="qty">Quantity </label>
+                    <input ngModel  type="number" #qty="ngModel" name="qty" id="qty"><br>
+                </div>  
+                <button (click)="addProductDetails()" id ="add-button"><mat-icon>add</mat-icon></button>
+            </div>
+            <div>
+            </div>
+
+
+            
+        </form>
+        <table *ngIf = "productList.length>0">
+            <tr > 
+                <td>Name </td>
+                <td>Price</td>
+                <td>Quantity</td>
+              </tr>
+            
+            <tr *ngFor="let product of productList"> 
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.quantity}}</td>
+            </tr>
+          </table>
+  
+               
+
+        <div>
+            <p>Total Amount : {{totalAmount|currency : 'INR'}}</p>
+        </div>
+        <div class="button-div">
+            <button mat-raised-button [disabled]="invoiceForm.invalid || productList.length<=0"
+            (click)="handleSubmit()">{{this.data.action}}</button>
+            <button mat-dialog-close mat-raised-button>Back</button>
+        </div>
+    </div>
+    <div *ngIf="data.action=='Delete'" class="delete-section">
+        <p>Are you share you want to delete the Customer</p>
+        <button mat-raised-button 
+        (click)="handleSubmit()">{{this.data.action}}</button>
+        <button mat-dialog-close mat-raised-button>Back</button>
+
+    </div>
+</div>
+<style>
+    td{
+        text-align: center;
+        margin-left: 2rem;
+    }
+    #add-button{
+        background-color: transparent;
+        border: none;
+    }
+.product-detail{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+.product-details{
+    display: flex;
+    margin-top: 1rem;
+}
+    .delete-section{
+        padding: 1rem;
+    }
+    .dialog-body,.button-div{
+        padding: 1rem;
+    }
+    input {
+        margin: 1rem;
+        padding: 0.5 rem;
+    }
+
+    .button-div>button {
+        margin: 0 10px;
+    }
+
+    mat-icon {
+        background-color: orange;
+        color: white;
+        margin: 1rem;
+    }
+
+    .dialog-main-div {
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+
+    }
+
+    .dialog-nav>h2 {
+        margin: auto 20px;
+        font-weight:normal;
+    }
+
+    .dialog-nav {
+        color: whitesmoke;
+        display: flex;
+        justify-content: space-between;
+        height: 10%;
+        background-color: orange;
+    }
+</style>

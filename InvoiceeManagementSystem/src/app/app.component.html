@@ -1,0 +1,38 @@
+<div>
+    <div class="nav-bar">
+        <h2><mat-icon>forum</mat-icon> <span>  Invoice Management System</span></h2>
+        <div class="link">
+            <button (click)="addInvoice()" >
+                <mat-icon>add</mat-icon>
+                <p> Add Invoice</p>
+            </button>
+            <button (click)="addCustomer()" >
+                <mat-icon>add</mat-icon>
+                <p> Add Customer</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-contet">
+        <p>Filter by : </p>
+        <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option (click)="filter(true)" selected>Invoice</mat-chip-option>
+            <mat-chip-option (click)="filter(false)">Customer</mat-chip-option>
+          </mat-chip-listbox>
+            
+            <div *ngIf="showInvoice" class ="invoice-list">
+                <div *ngFor="let invoice of invoiceList">
+                    <app-invoice [invoice]="invoice"></app-invoice>  
+                </div>
+            </div>
+
+            <div *ngIf="!showInvoice" class ="customer-list">
+                <div *ngFor="let customer of customerList">
+                    <app-customer [customer]="customer"></app-customer>  
+                </div>
+            </div>
+        
+        
+    </div>
+
+</div>

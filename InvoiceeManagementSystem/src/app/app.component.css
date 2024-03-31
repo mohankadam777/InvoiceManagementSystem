@@ -1,0 +1,44 @@
+.nav-bar {
+  background-color: orange;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  vertical-align: center;
+  text-align: center;
+} 
+.link {
+  display: flex;
+  justify-content: right;
+  vertical-align: center;
+  width: 50%;
+}
+button {
+  background-color: orange;
+  /* color: black; */
+  display: flex;
+  vertical-align: center;
+  text-decoration: none;
+  margin: auto 20px;
+  border :none;
+  cursor :pointer;
+}
+h2 {
+  margin: auto 0;
+  padding: 1%;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+
+}
+h2>mat-icon,span{
+  margin: 0.25rem;
+}
+p {
+  font-size: 1rem;
+  margin: auto 10px;
+  font-size: 1rem;
+}
+.main-contet{
+  padding: 1%;
+}

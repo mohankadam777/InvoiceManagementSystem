@@ -1,0 +1,14 @@
+mat-card-header{
+    display: flex;
+    flex-direction: column;
+}
+mat-card{
+    width: 100%;
+    margin: 0.5%;
+}
+button{
+    margin : 0 1%;
+}
+p{
+    margin: 0.25rem;
+}

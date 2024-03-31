@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  # output:
+  #   ansi:
+  #     enabled: always
+
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "postgres"
+    password: "password"
+
+  jpa:
+    hibernate:
+      ddl-auto: update # dont use in production
+    show-sql: true   # dont use in production 
